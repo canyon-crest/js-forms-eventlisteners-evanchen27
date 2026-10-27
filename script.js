@@ -17,7 +17,10 @@
 
 // STEP 1: Get the "Shout" button by its ID ("btnShout")
 //         using document.getElementById()
-
+btnShout.addEventListener("click", function() {
+    hi = shoutInput.value.toUpperCase()
+    outShout.innerHTML = hi + "!"
+})
 // STEP 2: Add a click event listener to the button.
 //         Inside the listener function:
 //         a) Get the text from the input with ID "shoutInput"
@@ -39,7 +42,34 @@
 //   - Toppings (checkboxes): $0.50 each
 //   - Service (dropdown): Dine In $0, Take Out $1.50,
 //     Delivery $3.00
-
+const size = document.getElementsByName("rg")
+const toppings = document.getElementsByName("cb")
+btnCalc.addEventListener("click", function() {
+    let name = myInput.value
+    let count = 0
+    let value = 0
+    for (i = 0; i < size.length; i++)
+        if (size[i].checked) {
+            value = parseInt(size[i].value)
+        }
+    for (i = 0; i < toppings.length; i++) {
+        if (toppings[i].checked) {
+            value = value + 0.5
+        }
+    }
+    if (document.getElementById("serviceSelect").value === "dinein") {
+        value = value
+    } else if (document.getElementById("serviceSelect").value === "takeout") {
+        value = value + 1.5
+    } else if (document.getElementById("serviceSelect").value === "delivery") {
+        value = value + 3
+    }
+    if (myInput.value === "") {
+        name = "Customer"
+    }
+    myPara.innerHTML = (name + ", your total is $" + value.toFixed(2))
+}
+)
 // STEP 3: Get the "Calculate Total" button by ID ("btnCalc")
 //         Add a click event listener.
 //         Inside the listener:
@@ -73,8 +103,20 @@
 //      Use .toFixed(2) to format the total.
 //      Example: "Alice, your total is $13.50"
 //      If name is empty, use "Customer" as the default.
+clearBtn.addEventListener("click", function() {
+    myInput.value = ""
+    document.getElementById("r3").checked = true
+    for (i = 0; i < toppings.length; i++) {
+        if (toppings[i].checked && toppings[i]) {
+            toppings[i].checked = false
+        }
+    }
 
-
+    document.getElementById("serviceSelect").value = "dinein"
+    myPara.innerHTML = ""
+    
+}
+)
 // STEP 4: Get the "Clear" button by ID ("clearBtn")
 //         Add a click event listener.
 //         Inside the listener:
