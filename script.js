@@ -50,7 +50,7 @@ btnCalc.addEventListener("click", function() {
     let value = 0
     for (i = 0; i < size.length; i++)
         if (size[i].checked) {
-            value = parseInt(size[i].value)
+            value = parseFloat(size[i].value)
         }
     for (i = 0; i < toppings.length; i++) {
         if (toppings[i].checked) {
